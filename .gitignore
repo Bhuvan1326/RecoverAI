@@ -12,3 +12,5 @@ smoke_test.py
 *.log
 .pytest_cache/
 .ruff_cache/
+
+my-project.zip
