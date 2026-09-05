@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Synthetic Payer Policy: Prior Authorization Requirements",
+    "source_type": "payer_policy",
+    "version": "1.0",
+    "text": "This synthetic policy document describes prior authorization requirements for outpatient procedures. Claims submitted without a valid prior authorization on file will be denied under reason code MISSING_AUTHORIZATION. Providers may appeal a missing-authorization denial within 60 days of the denial date by submitting evidence that authorization was requested prior to the date of service, or that the service met an authorization exception (e.g. emergency care). Appeals lacking documentation of a good-faith authorization attempt are unlikely to be overturned. This is demonstration content only and does not represent any real payer's actual policy."
+  },
+  {
+    "title": "Synthetic Payer Policy: Timely Filing Limits",
+    "source_type": "payer_policy",
+    "version": "1.0",
+    "text": "This synthetic policy document describes timely filing requirements. Claims must be submitted within 90 days of the date of service. Claims submitted after this window will be denied under reason code TIMELY_FILING. Exceptions may be granted for claims involving retroactive eligibility determination, coordination-of-benefits delays, or documented system outages on the payer's claims portal during the filing window. Appeals must include evidence of the qualifying exception. This is demonstration content only and does not represent any real payer's actual policy."
+  },
+  {
+    "title": "Synthetic Payer Policy: Documentation Standards for Appeals",
+    "source_type": "payer_policy",
+    "version": "1.0",
+    "text": "This synthetic policy document describes documentation standards required to support a claims appeal. A complete appeal package should include the original claim, the denial notice, relevant clinical documentation supporting medical necessity, and any prior authorization correspondence. Claims denied for MISSING_DOCUMENTATION may be appealed by submitting the missing records within 45 days. Incomplete appeal packages will be administratively closed without a substantive review. This is demonstration content only and does not represent any real payer's actual policy."
+  },
+  {
+    "title": "Synthetic Payer Policy: Coding and Modifier Guidance",
+    "source_type": "payer_policy",
+    "version": "1.0",
+    "text": "This synthetic policy document describes coding and modifier requirements. Claims with a procedure-diagnosis combination that does not meet medical necessity criteria on file, or that uses an invalid or missing modifier for the billed procedure, may be denied under reason code CODING_MISMATCH. Providers may appeal by submitting a corrected claim with appropriate coding, along with clinical documentation supporting the corrected code selection. This is demonstration content only and does not represent any real payer's actual policy."
+  },
+  {
+    "title": "Synthetic Payer Policy: Eligibility Verification",
+    "source_type": "payer_policy",
+    "version": "1.0",
+    "text": "This synthetic policy document describes eligibility verification requirements. Providers are responsible for verifying member eligibility on the date of service. Claims for members who were not eligible on the date of service will be denied under reason code ELIGIBILITY_ISSUE. Appeals may be submitted with evidence of active coverage on the date of service, such as a corrected eligibility span or proof of retroactive enrollment. This is demonstration content only and does not represent any real payer's actual policy."
+  }
+]

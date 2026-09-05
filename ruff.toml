@@ -1,0 +1,12 @@
+line-length = 130
+target-version = "py312"
+
+[lint]
+# Keep CI focused on real correctness issues (syntax errors, undefined
+# names, unused imports/variables) rather than full style enforcement --
+# appropriate signal-to-noise for a portfolio project's CI.
+select = ["E9", "F"]
+ignore = ["F401", "F403"]
+
+[lint.per-file-ignores]
+"backend/app/models/__init__.py" = ["F401", "F403"]

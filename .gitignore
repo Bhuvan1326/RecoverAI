@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+.next/
+*.db
+*.db-journal
+.env
+ml/models/artifacts/*.joblib
+ml/models/artifacts/*.json
+smoke_test.py
+*.log
+.pytest_cache/
+.ruff_cache/

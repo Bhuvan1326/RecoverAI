@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #0b1220;
+  color: #e6ecf5;
+}
+
+.card {
+  @apply bg-panel border border-white/10 rounded-xl p-5 shadow-sm;
+}
+
+.badge {
+  @apply inline-block px-2 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-critical { @apply bg-red-500/20 text-red-300; }
+.badge-high { @apply bg-orange-500/20 text-orange-300; }
+.badge-medium { @apply bg-yellow-500/20 text-yellow-300; }
+.badge-low { @apply bg-green-500/20 text-green-300; }
+
+.btn {
+  @apply px-4 py-2 rounded-lg font-medium transition-colors;
+}
+.btn-primary { @apply bg-accent text-white hover:bg-blue-500; }
+.btn-secondary { @apply bg-white/10 text-white hover:bg-white/20; }
+.btn-danger { @apply bg-bad/80 text-white hover:bg-bad; }
+
+.simulated-badge {
+  @apply text-[10px] uppercase tracking-wide bg-yellow-500/15 text-yellow-300 px-2 py-1 rounded;
+}
