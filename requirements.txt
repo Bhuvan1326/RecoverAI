@@ -13,7 +13,7 @@ psycopg2-binary==2.9.9
 pgvector==0.3.4
 redis==8.1.0
 celery==5.6.3
-pandas==2.2.2
+pandas>=2.2.3,<3
 numpy==1.26.4
 scikit-learn==1.5.2
 scipy==1.14.1
