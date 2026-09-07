@@ -5,22 +5,16 @@ All settings are environment-driven (12-factor). Sensible local-dev defaults
 are provided so the app runs out of the box with `docker compose up`, but
 NOTHING here is meant to be a production secret. See .env.example.
 """
+import re
 from functools import lru_cache
 from pathlib import Path
 from typing import Literal
 
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-# Anchored to the repo root regardless of the importing process's cwd.
-# Without this, a SQLite URL like "sqlite:///./recoverai.db" resolves
-# relative to whatever directory a given process happened to be launched
-# from -- which silently breaks multi-process local dev (e.g. the API
-# server and a separately-launched `celery worker` process each computing
-# a DIFFERENT actual file path and therefore seeing different, empty
-# databases) even though `alembic upgrade head` and Base.metadata.create_all()
-# both "succeeded". Postgres in Docker never has this problem since its URL
-# is a real network address, not a relative filesystem path -- this only
-# matters for the zero-setup local/SQLite quickstart.
+_PG_URL_RE = re.compile(r"^postgres(?:ql)?(?:\+[\w]+)?://(.*)$", re.IGNORECASE)
+
 _REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 _DEFAULT_SQLITE_URL = f"sqlite:///{_REPO_ROOT / 'recoverai.db'}"
 
@@ -31,10 +25,16 @@ class Settings(BaseSettings):
     APP_NAME: str = "RecoverAI"
     ENVIRONMENT: Literal["local", "docker", "test", "production"] = "local"
 
-    # Database. Defaults to a local SQLite file so the backend is runnable
-    # with zero external services for development/testing. Docker Compose
-    # overrides this via DATABASE_URL to point at Postgres+pgvector.
     DATABASE_URL: str = _DEFAULT_SQLITE_URL
+
+    @field_validator("DATABASE_URL")
+    @classmethod
+    def _use_installed_postgres_driver(cls, v: str) -> str:
+
+        match = _PG_URL_RE.match(v)
+        if match:
+            return f"postgresql+psycopg://{match.group(1)}"
+        return v
 
     # Auth
     JWT_SECRET_KEY: str = "dev-only-secret-change-me-in-production"
@@ -44,9 +44,7 @@ class Settings(BaseSettings):
     # CORS
     CORS_ORIGINS: list[str] = ["http://localhost:3000"]
 
-    # LLM / Embedding provider abstraction (Section 39 of spec).
-    # "mock" works with zero external services / API keys so the whole
-    # application remains functional without any paid API access.
+
     LLM_PROVIDER: Literal["mock", "anthropic", "openai"] = "mock"
     EMBEDDING_PROVIDER: Literal["mock", "openai"] = "mock"
     ANTHROPIC_API_KEY: str | None = None
